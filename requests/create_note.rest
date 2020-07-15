@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+  "content": "this text add from REST client(VSCODE Tools)",
+  "important": false
+}
