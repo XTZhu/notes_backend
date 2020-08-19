@@ -24,5 +24,7 @@ PORT=3001
 - 是安装了 vscode 拓展： REST Client
 
 - 使用: ctrl + Alt + R 
+[REST Client github](https://github.com/Huachao/vscode-restclient)
 
-
+- 学习 nodejs
+- 熟悉各种操作， 用到 mongo
