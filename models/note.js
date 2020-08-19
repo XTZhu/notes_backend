@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
-const url = process.env.MONGODB_URI;
-
-console.log("connecting to", url);
+const config = require("../utils/config");
 
 mongoose.set("useFindAndModify", false);
 
 mongoose
-  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(config.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     console.log("connected to MongoDB");
   })
@@ -15,8 +16,15 @@ mongoose
   });
 
 const noteSchema = new mongoose.Schema({
-  content: String,
-  date: Date,
+  content: {
+    type: String,
+    minlength: 5,
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
   important: Boolean,
 });
 
