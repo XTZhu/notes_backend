@@ -11,7 +11,8 @@
     "deploy:pre": "git add yarn.lock && git commit -m 'Updated Yarn lockfile' && git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
-    "lint": "eslint --ext .js,.ts src"
+    "lint": "eslint --ext .js,.ts src",
+    "test": "jest --verbose"
   },
   "author": "zwz",
   "license": "MIT",
@@ -29,6 +30,10 @@
     "eslint": "^7.7.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-react": "^7.20.6",
+    "jest": "^26.4.0",
     "nodemon": "^2.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
