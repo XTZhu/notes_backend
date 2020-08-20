@@ -18,8 +18,6 @@ mongoose
   .connect(config.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    user: "foouser",
-    pass: "foopwd",
   })
   .then((result) => {
     console.log("connected to MongoDB");
