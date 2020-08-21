@@ -1,21 +1,26 @@
 module.exports = {
   env: {
-    browser: true,
-    es2020: true,
-    jest: true,
     commonjs: true,
     es6: true,
     node: true,
+    jest: true,
   },
-  extends: ["plugin:react/recommended", "airbnb"],
-  parser: "@typescript-eslint/parser",
+  extends: "eslint:recommended",
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+  },
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 11,
-    sourceType: "module",
+    ecmaVersion: 2018,
   },
-  plugins: ["react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    indent: ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    quotes: ["error", "double"],
+    eqeqeq: "error",
+    "no-trailing-spaces": "error",
+    "object-curly-spacing": ["error", "always"],
+    "arrow-spacing": ["error", { before: true, after: true }],
+    "no-console": 0,
+  },
 };

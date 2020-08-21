@@ -4,20 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "rm -rf build && cd ../openstack && npm run build --prod && cp -r build ../simple_react",
     "deploy": "git push heroku master",
     "deploy:pre": "git add yarn.lock && git commit -m 'Updated Yarn lockfile' && git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
-    "lint": "eslint --ext .js,.ts src",
-    "test": "jest --verbose"
+    "lint": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "author": "zwz",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
@@ -31,7 +32,8 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-react": "^7.20.6",
     "jest": "^26.4.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   },
   "jest": {
     "testEnvironment": "node"
