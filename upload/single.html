@@ -29,19 +29,21 @@
     <div id="root"></div>
     <div id="like_button_container"></div>
     <script type="text/babel">
-      const Button = antd.Button;
-      const Upload = antd.Upload;
+      const { Button, Upload, message } = antd;
+
       const props = {
         name: "file",
         action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
         headers: {
           authorization: "authorization-text",
         },
+
         onChange(info) {
           if (info.file.status !== "uploading") {
             console.log(info.file, info.fileList);
           }
           if (info.file.status === "done") {
+            // console.log(uploadInput);
             message.success(`${info.file.name} file uploaded successfully`);
           } else if (info.file.status === "error") {
             message.error(`${info.file.name} file upload failed.`);
