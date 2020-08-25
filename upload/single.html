@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.6.1/antd.min.css"
+      integrity="sha512-2SGI5T/y8FJNyBbuUYsZlNRqQ3ZAbJ3fgd41UQcvEXM+LLnBg9qyHqopKO88/w09uaweOv4HbLsFez0hIH4A+Q=="
+      crossorigin="anonymous"
+    />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.6.1/default-theme.min.js"
+      integrity="sha512-HU4OGdJXpr7WJrVEPv+PLpM+u/+FSTpJ4ceZBVdykMoSskmH8ZAxnUhewkJKNXLhCy3oDYQcjGMj/9waZ5rSzA=="
+      crossorigin="anonymous"
+    ></script> -->
+  </head>
+  <body>
+    <h2>Add React in One Minute</h2>
+    <p>This page demonstrates using React with no build tooling.</p>
+    <p>React is loaded as a script tag.</p>
+
+    <!-- We will put our React component inside this div. -->
+    <div id="root"></div>
+    <div id="like_button_container"></div>
+    <script type="text/babel">
+      const Button = antd.Button;
+      const Upload = antd.Upload;
+      const props = {
+        name: "file",
+        action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        headers: {
+          authorization: "authorization-text",
+        },
+        onChange(info) {
+          if (info.file.status !== "uploading") {
+            console.log(info.file, info.fileList);
+          }
+          if (info.file.status === "done") {
+            message.success(`${info.file.name} file uploaded successfully`);
+          } else if (info.file.status === "error") {
+            message.error(`${info.file.name} file upload failed.`);
+          }
+        },
+      };
+      ReactDOM.render(
+        <h1>
+          Hello, world!
+          <Button>Default Button</Button>
+          <Upload {...props}>
+            <Button>Click to Upload</Button>
+          </Upload>
+        </h1>,
+        document.getElementById("root")
+      );
+    </script>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.6.1/antd.min.js"
+      integrity="sha512-rPqRMX/4jFDJThNjfMJdEWy7cLU+ZonHIBTzHmy5OkHdaT6wZmZozvXgs7KvybTNdCDGa537RB2bURRg+LztKw=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Load our React component. -->
+    <!-- <script src="like_button.js"></script> -->
+  </body>
+</html>
