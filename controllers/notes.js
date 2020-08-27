@@ -1,6 +1,15 @@
+const jwt = require("jsonwebtoken");
 const notesRouter = require("express").Router();
 const Note = require("../models/note");
 const User = require("../models/user");
+
+// 辅助函数 加上bearer 前缀
+const getTokenFrom = (request) => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    return authorization.substring(7);
+  }
+};
 
 // get all notes
 notesRouter.get("/", async (request, response) => {
@@ -22,7 +31,12 @@ notesRouter.get("/:id", async (request, response) => {
 notesRouter.post("/", async (request, response) => {
   const body = request.body;
 
-  const user = await User.findById(body.userId);
+  const token = getTokenFrom(request);
+  const decodedToken = jwt.verify(token, process.env.SECRET);
+  if (!token || !decodedToken.id) {
+    return response.status(401).json({ error: "token丢失或不合法" });
+  }
+  const user = await User.findById(decodedToken.id);
 
   if (!body.content) {
     return response.status(400).json({
