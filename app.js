@@ -33,7 +33,7 @@ app.use(middleware.requestLogger);
 app.use("/api/notes", notesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
-app.use("/test/upload", express.static("upload/single.html"));
+app.use("/test/upload", express.static("upload"));
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

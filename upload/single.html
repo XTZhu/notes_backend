@@ -3,22 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Add React in One Minute</title>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.6.1/antd.min.css"
       integrity="sha512-2SGI5T/y8FJNyBbuUYsZlNRqQ3ZAbJ3fgd41UQcvEXM+LLnBg9qyHqopKO88/w09uaweOv4HbLsFez0hIH4A+Q=="
       crossorigin="anonymous"
     />
-    <!-- <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.6.1/default-theme.min.js"
-      integrity="sha512-HU4OGdJXpr7WJrVEPv+PLpM+u/+FSTpJ4ceZBVdykMoSskmH8ZAxnUhewkJKNXLhCy3oDYQcjGMj/9waZ5rSzA=="
-      crossorigin="anonymous"
-    ></script> -->
   </head>
   <body>
     <h2>Add React in One Minute</h2>
@@ -28,38 +22,29 @@
     <!-- We will put our React component inside this div. -->
     <div id="root"></div>
     <div id="like_button_container"></div>
-    <script type="text/babel">
-      const { Button, Upload, message } = antd;
-
-      const props = {
-        name: "file",
-        action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-        headers: {
-          authorization: "authorization-text",
+    <script>
+      L2Dwidget.init({
+        model: {
+          jsonPath:
+            "https://unpkg.com/live2d-widget-model-sagiri@1.0.0/assets/sagiri.model.json",
+          scale: 1,
         },
-
-        onChange(info) {
-          if (info.file.status !== "uploading") {
-            console.log(info.file, info.fileList);
-          }
-          if (info.file.status === "done") {
-            // console.log(uploadInput);
-            message.success(`${info.file.name} file uploaded successfully`);
-          } else if (info.file.status === "error") {
-            message.error(`${info.file.name} file upload failed.`);
-          }
+        display: {
+          position: "left",
+          width: 75,
+          height: 150,
+          hOffset: 0,
+          vOffset: -20,
         },
-      };
-      ReactDOM.render(
-        <h1>
-          Hello, world!
-          <Button>Default Button</Button>
-          <Upload {...props}>
-            <Button>Click to Upload</Button>
-          </Upload>
-        </h1>,
-        document.getElementById("root")
-      );
+        mobile: {
+          show: true,
+          scale: 0.5,
+        },
+        react: {
+          opacityDefault: 0.7,
+          opacityOnHover: 0.2,
+        },
+      });
     </script>
 
     <!-- Load React. -->
@@ -78,6 +63,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- Load our React component. -->
-    <!-- <script src="like_button.js"></script> -->
+    <script src="../upload/like_button.js"></script>
   </body>
 </html>
