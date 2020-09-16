@@ -19,7 +19,7 @@ module.exports = {
       host: "47.107.71.183",
       ref: "origin/master",
       repo: "git@github.com:XTZhu/notes_backend.git",
-      path: "/www/wwwroot/root/note_server/",
+      path: "/www/wwwroot/root",
       "post-deploy":
         "npm install && pm2 reload ecosystem.config.js --env production",
     },
