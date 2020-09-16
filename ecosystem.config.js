@@ -11,10 +11,6 @@ module.exports = {
         NODE_ENV: "production",
       },
     },
-    {
-      script: "./service-worker/",
-      watch: ["./service-worker"],
-    },
   ],
 
   deploy: {
@@ -24,10 +20,8 @@ module.exports = {
       ref: "origin/master",
       repo: "git@github.com:XTZhu/notes_backend.git",
       path: "/www/wwwroot/root/note_server/",
-      "pre-deploy-local": "",
       "post-deploy":
         "npm install && pm2 reload ecosystem.config.js --env production",
-      "pre-setup": "",
     },
   },
 };
