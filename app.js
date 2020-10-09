@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 
 logger.info("connecting to", config.MONGODB_URI);
 
+logger.info("config", config);
 mongoose
   .connect(config.MONGODB_URI, {
     useNewUrlParser: true,
