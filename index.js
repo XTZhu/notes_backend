@@ -4,7 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 
 const server = http.createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, { origins: "*:*" });
 
 io.on("connection", socket => {
   socket.send("Hello!");
@@ -12,12 +12,8 @@ io.on("connection", socket => {
   socket.on("message", data => {
     console.log(data);
   });
-
-  socket.on("salutations", (elem1, elem2, elem3) => {
-    console.log(elem1, elem2, elem3);
-  });
+  socket.send("message");
 });
-
 
 server.listen(config.PORT, () => {
   logger.info(`Server running on port ${config.PORT}`);
