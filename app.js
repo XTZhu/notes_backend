@@ -1,5 +1,6 @@
 const config = require("./utils/config");
 const express = require("express");
+const path = require("path");
 require("express-async-errors");
 const app = express();
 const cors = require("cors");
@@ -47,14 +48,14 @@ app.use(function (req, res, next) {
 
   next();
 });
-// app.use(express.static("build"));
+
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.json());
 app.use(middleware.requestLogger);
 
 app.use("/api/notes", notesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
-app.use("/test/upload", express.static("upload"));
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
